@@ -14,10 +14,7 @@ export default function TodoHeader() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo({
-      id: Math.floor(Math.random() * 100000),
-      text: input,
-    });
+    addTodo(input);
     setInput("");
   };
 

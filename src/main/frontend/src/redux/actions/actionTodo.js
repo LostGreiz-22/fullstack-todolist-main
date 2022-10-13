@@ -1,4 +1,4 @@
-import { get } from '../../util/http';
+import { deleteMethod, get } from '../../util/http';
 
 export const getAllTodo = () => {
     const url = '/todo/getAll';
@@ -16,19 +16,15 @@ export const getAllTodo = () => {
 }
 
 export const addTodo = (newTodo) => {
-    return (dispatch) => {
-        dispatch({
-            type: "ADD_TODO",
-            payload: newTodo
-        })
-    }
-}
+    const url = `/todo/addTodo/${newTodo}`
+    return new Promise( (resolve, reject) => {
+        const promise = put(url);
+        promise.then((response) => {
+            resolve({
+                type: 'SET_TODOLILST',
+                payload: response
+            })
 
-export const removeTodo = (id) => {
-    return (dispatch) => {
-        dispatch({
-            type: 'REMOVE_TODO',
-            payload: id
         })
-    }
-}
+    
+    })}
